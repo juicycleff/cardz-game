@@ -46,7 +46,6 @@ export default class App extends React.Component {
     await fetch(`https://deckofcardsapi.com/api/deck/${deckId}/draw/?count=${count}`)
       .then((response) => response.json())
       .then(responseJson => {
-        console.log(responseJson)
         const cards = responseJson;
         this.setState({ currentCard: cards[0] });
       });
@@ -61,7 +60,6 @@ export default class App extends React.Component {
       .then((responseJson) => {
         const cards = responseJson.cards;
         const newCard = cards[0];
-        console.log(newCard)
 
         this.setState({
           prevCard: currentCard,
@@ -72,9 +70,6 @@ export default class App extends React.Component {
         if(!gameStarted) {
           this.setState({ gameStarted: true });
         }
-      })
-      .catch((error) => {
-        console.error(error);
       });
 
     if(currentBet === 0) {
@@ -98,8 +93,6 @@ export default class App extends React.Component {
 
     this.setState({ currentBet: 0 });
     this.betGame(deckId, 1);
-
-    console.log(currentCard)
   }
 
   renderWinOrLose() {
